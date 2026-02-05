@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeTracker - Privacy Policy</title>
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-surface: #f9fafb;
+            --color-text: #1f2937;
+            --color-text-secondary: #6b7280;
+            --color-accent: #2563eb;
+            --color-border: #e5e7eb;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-bg: #111827;
+                --color-surface: #1f2937;
+                --color-text: #f9fafb;
+                --color-text-secondary: #9ca3af;
+                --color-accent: #60a5fa;
+                --color-border: #374151;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: var(--color-surface);
+            border-bottom: 1px solid var(--color-border);
+            padding: 24px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        header p {
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .lang-switcher button {
+            padding: 6px 16px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .lang-switcher button.active {
+            background-color: var(--color-accent);
+            border-color: var(--color-accent);
+            color: #ffffff;
+        }
+
+        .lang-switcher button:hover:not(.active) {
+            border-color: var(--color-accent);
+        }
+
+        main {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 32px 20px 64px;
+        }
+
+        .last-updated {
+            font-size: 0.8125rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 32px;
+        }
+
+        section {
+            margin-bottom: 32px;
+        }
+
+        section h2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        section p {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+        }
+
+        section ul {
+            color: var(--color-text-secondary);
+            font-size: 0.9375rem;
+            list-style: none;
+            padding: 0;
+            margin-top: 8px;
+        }
+
+        section ul li {
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 4px;
+        }
+
+        section ul li::before {
+            content: "\2022";
+            position: absolute;
+            left: 4px;
+            color: var(--color-accent);
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px 20px;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+            font-size: 0.8125rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>HomeTracker</h1>
+        <p id="header-subtitle-en">Privacy Policy</p>
+        <p id="header-subtitle-es" class="hidden">Pol&iacute;tica de Privacidad</p>
+        <div class="lang-switcher">
+            <button id="btn-en" class="active" onclick="switchLang('en')">English</button>
+            <button id="btn-es" onclick="switchLang('es')">Espa&ntilde;ol</button>
+        </div>
+    </header>
+
+    <main>
+        <!-- English -->
+        <div id="content-en">
+            <p class="last-updated">Last updated: February 2026</p>
+
+            <section>
+                <h2>Introduction</h2>
+                <p>HomeTracker (&ldquo;we&rdquo;, &ldquo;our&rdquo;, or &ldquo;the app&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our home maintenance tracking application.</p>
+            </section>
+
+            <section>
+                <h2>Information We Collect</h2>
+                <p>HomeTracker collects only the information you directly provide:</p>
+                <ul>
+                    <li>Task information: Names, categories, frequencies, and due dates of maintenance tasks you create</li>
+                    <li>Completion records: Dates, costs, and notes when you mark tasks as complete</li>
+                    <li>Photos: Images you choose to attach to task completions</li>
+                    <li>App preferences: Your notification settings and display preferences</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Data Storage</h2>
+                <p>All your data is stored locally on your device and optionally synced via iCloud if enabled. We do not have access to your data, and it is not stored on our servers. Your information remains under your control at all times.</p>
+            </section>
+
+            <section>
+                <h2>How We Use Your Information</h2>
+                <p>Your information is used exclusively to:</p>
+                <ul>
+                    <li>Display your maintenance tasks and history</li>
+                    <li>Send local reminder notifications you have configured</li>
+                    <li>Sync data across your devices via iCloud (if enabled)</li>
+                    <li>Generate export reports when you request them</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Third-Party Services</h2>
+                <p>HomeTracker does not share your personal data with third parties. The only external service used is Apple&rsquo;s iCloud for optional data synchronization, which is governed by Apple&rsquo;s Privacy Policy.</p>
+            </section>
+
+            <section>
+                <h2>Notifications</h2>
+                <p>If you enable notifications, HomeTracker will send local reminders about upcoming maintenance tasks. These notifications are processed entirely on your device and no notification data is transmitted externally.</p>
+            </section>
+
+            <section>
+                <h2>Photos and Camera</h2>
+                <p>When you add photos to task completions, images are stored locally on your device. Photos are only accessed when you explicitly choose to add them through the app. We do not access your photo library without your permission.</p>
+            </section>
+
+            <section>
+                <h2>Your Rights</h2>
+                <p>You have complete control over your data:</p>
+                <ul>
+                    <li>Access: View all your data within the app at any time</li>
+                    <li>Export: Export your complete data in CSV or PDF format</li>
+                    <li>Delete: Remove individual tasks or reset all data from Settings</li>
+                    <li>Portability: Your data can be exported and used elsewhere</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. Any changes will be reflected in the app with an updated revision date. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+            </section>
+
+            <section>
+                <h2>Contact Us</h2>
+                <p>If you have questions about this Privacy Policy or our privacy practices, please contact us through the App Store support link or leave a review with your feedback.</p>
+            </section>
+        </div>
+
+        <!-- Spanish -->
+        <div id="content-es" class="hidden">
+            <p class="last-updated">&Uacute;ltima actualizaci&oacute;n: Febrero 2026</p>
+
+            <section>
+                <h2>Introducci&oacute;n</h2>
+                <p>HomeTracker (&ldquo;nosotros&rdquo;, &ldquo;nuestro&rdquo; o &ldquo;la aplicaci&oacute;n&rdquo;) est&aacute; comprometido con la protecci&oacute;n de tu privacidad. Esta Pol&iacute;tica de Privacidad explica c&oacute;mo recopilamos, usamos y protegemos tu informaci&oacute;n cuando utilizas nuestra aplicaci&oacute;n de seguimiento de mantenimiento del hogar.</p>
+            </section>
+
+            <section>
+                <h2>Informaci&oacute;n que Recopilamos</h2>
+                <p>HomeTracker solo recopila la informaci&oacute;n que proporcionas directamente:</p>
+                <ul>
+                    <li>Informaci&oacute;n de tareas: Nombres, categor&iacute;as, frecuencias y fechas de vencimiento de las tareas de mantenimiento que creas</li>
+                    <li>Registros de finalizaci&oacute;n: Fechas, costos y notas cuando marcas tareas como completadas</li>
+                    <li>Fotos: Im&aacute;genes que eliges adjuntar a las tareas completadas</li>
+                    <li>Preferencias de la app: Tu configuraci&oacute;n de notificaciones y preferencias de visualizaci&oacute;n</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Almacenamiento de Datos</h2>
+                <p>Todos tus datos se almacenan localmente en tu dispositivo y opcionalmente se sincronizan a trav&eacute;s de iCloud si est&aacute; habilitado. No tenemos acceso a tus datos y no se almacenan en nuestros servidores. Tu informaci&oacute;n permanece bajo tu control en todo momento.</p>
+            </section>
+
+            <section>
+                <h2>C&oacute;mo Usamos tu Informaci&oacute;n</h2>
+                <p>Tu informaci&oacute;n se utiliza exclusivamente para:</p>
+                <ul>
+                    <li>Mostrar tus tareas de mantenimiento e historial</li>
+                    <li>Enviar notificaciones locales de recordatorio que hayas configurado</li>
+                    <li>Sincronizar datos entre tus dispositivos a trav&eacute;s de iCloud (si est&aacute; habilitado)</li>
+                    <li>Generar informes de exportaci&oacute;n cuando los solicites</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Servicios de Terceros</h2>
+                <p>HomeTracker no comparte tus datos personales con terceros. El &uacute;nico servicio externo utilizado es iCloud de Apple para la sincronizaci&oacute;n opcional de datos, el cual se rige por la Pol&iacute;tica de Privacidad de Apple.</p>
+            </section>
+
+            <section>
+                <h2>Notificaciones</h2>
+                <p>Si habilitas las notificaciones, HomeTracker enviar&aacute; recordatorios locales sobre las pr&oacute;ximas tareas de mantenimiento. Estas notificaciones se procesan completamente en tu dispositivo y no se transmite ning&uacute;n dato de notificaci&oacute;n externamente.</p>
+            </section>
+
+            <section>
+                <h2>Fotos y C&aacute;mara</h2>
+                <p>Cuando agregas fotos a las tareas completadas, las im&aacute;genes se almacenan localmente en tu dispositivo. Solo se accede a las fotos cuando eliges agregarlas expl&iacute;citamente a trav&eacute;s de la aplicaci&oacute;n. No accedemos a tu biblioteca de fotos sin tu permiso.</p>
+            </section>
+
+            <section>
+                <h2>Tus Derechos</h2>
+                <p>Tienes control completo sobre tus datos:</p>
+                <ul>
+                    <li>Acceso: Consulta todos tus datos dentro de la aplicaci&oacute;n en cualquier momento</li>
+                    <li>Exportaci&oacute;n: Exporta tus datos completos en formato CSV o PDF</li>
+                    <li>Eliminaci&oacute;n: Elimina tareas individuales o restablece todos los datos desde Configuraci&oacute;n</li>
+                    <li>Portabilidad: Tus datos pueden exportarse y usarse en otro lugar</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Cambios en Esta Pol&iacute;tica</h2>
+                <p>Podemos actualizar esta Pol&iacute;tica de Privacidad de vez en cuando. Cualquier cambio se reflejar&aacute; en la aplicaci&oacute;n con una fecha de revisi&oacute;n actualizada. El uso continuado de la aplicaci&oacute;n despu&eacute;s de los cambios constituye la aceptaci&oacute;n de la pol&iacute;tica actualizada.</p>
+            </section>
+
+            <section>
+                <h2>Cont&aacute;ctanos</h2>
+                <p>Si tienes preguntas sobre esta Pol&iacute;tica de Privacidad o nuestras pr&aacute;cticas de privacidad, cont&aacute;ctanos a trav&eacute;s del enlace de soporte de la App Store o deja una rese&ntilde;a con tus comentarios.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 HomeTracker. All rights reserved.
+    </footer>
+
+    <script>
+        function switchLang(lang) {
+            document.getElementById('content-en').classList.toggle('hidden', lang !== 'en');
+            document.getElementById('content-es').classList.toggle('hidden', lang !== 'es');
+            document.getElementById('header-subtitle-en').classList.toggle('hidden', lang !== 'en');
+            document.getElementById('header-subtitle-es').classList.toggle('hidden', lang !== 'es');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+        }
+    </script>
+</body>
+</html>
