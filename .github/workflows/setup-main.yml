@@ -1,0 +1,42 @@
+name: Setup main branch
+
+on:
+  push:
+    branches: ["claude/add-privacy-policy-page-brBR2"]
+
+permissions:
+  contents: write
+
+jobs:
+  create-main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create main branch with empty initial commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if main branch already exists
+          if git ls-remote --heads origin main | grep -q main; then
+            echo "main branch already exists, skipping creation"
+          else
+            # Create an orphan main branch with an empty commit
+            git checkout --orphan main
+            git rm -rf .
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "Initial commit"
+            git push origin main
+            echo "main branch created successfully"
+          fi
+
+      - name: Set main as default branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh repo edit --default-branch main
+          echo "Default branch set to main"
