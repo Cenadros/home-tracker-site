@@ -1,4 +1,4 @@
-name: Setup main branch
+name: Setup main branch and PR
 
 on:
   push:
@@ -6,9 +6,10 @@ on:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
-  create-main:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,15 +17,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Create main branch with empty initial commit
+      - name: Create main branch if needed
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Check if main branch already exists
           if git ls-remote --heads origin main | grep -q main; then
             echo "main branch already exists, skipping creation"
           else
-            # Create an orphan main branch with an empty commit
             git checkout --orphan main
             git rm -rf .
             git config user.name "github-actions[bot]"
@@ -38,9 +37,43 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -s -X PATCH \
+          response=$(curl -s -o /dev/null -w "%{http_code}" -X PATCH \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}" \
-            -d '{"default_branch":"main"}'
-          echo "Default branch set to main"
+            -d '{"default_branch":"main"}')
+          if [ "$response" = "200" ]; then
+            echo "Default branch set to main"
+          else
+            echo "::warning::Could not set default branch (HTTP $response). You may need to set it manually in Settings > General > Default Branch."
+          fi
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Check if a PR already exists
+          existing_pr=$(gh pr list --head "claude/add-privacy-policy-page-brBR2" --base main --json number --jq '.[0].number' 2>/dev/null)
+          if [ -n "$existing_pr" ]; then
+            echo "PR #$existing_pr already exists"
+          else
+            gh pr create \
+              --title "Add privacy policy page" \
+              --body "$(cat <<'BODY'
+          ## Summary
+          - Add bilingual (English/Spanish) privacy policy page with dark mode support
+          - Add GitHub Actions workflow to deploy the site via GitHub Pages
+
+          ## Test plan
+          - [ ] Verify the privacy policy page renders correctly
+          - [ ] Test language switching between English and Spanish
+          - [ ] Confirm dark mode styling works
+          - [ ] Verify GitHub Pages deployment succeeds after merge
+
+          https://claude.ai/code/session_011oX8YQSftxUxTwZMcnzJaA
+          BODY
+          )" \
+              --head "claude/add-privacy-policy-page-brBR2" \
+              --base main
+            echo "Pull request created"
+          fi
