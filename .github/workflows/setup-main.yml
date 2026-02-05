@@ -34,46 +34,28 @@ jobs:
           fi
 
       - name: Set main as default branch
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          response=$(curl -s -w "\n%{http_code}" -X PATCH \
+          curl -sf -X PATCH \
             -H "Accept: application/vnd.github+json" \
             -H "Authorization: Bearer $GITHUB_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}" \
-            -d '{"default_branch":"main"}')
-          http_code=$(echo "$response" | tail -1)
-          body=$(echo "$response" | head -n -1)
-          echo "HTTP Status: $http_code"
-          echo "Response: $body"
-          if [ "$http_code" != "200" ]; then
-            echo "::warning::Could not set default branch (HTTP $http_code). Set it manually: Settings > General > Default Branch > main"
-          else
-            echo "Default branch set to main"
-          fi
+            -d '{"default_branch":"main"}' && echo "Default branch set to main" || echo "::warning::Could not set default branch. Set it manually in repo Settings."
 
-      - name: Create Pull Request
+      - name: Create Pull Request via API
+        continue-on-error: true
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          existing_pr=$(gh pr list --head "claude/add-privacy-policy-page-brBR2" --base main --json number --jq '.[0].number' 2>/dev/null || true)
-          if [ -n "$existing_pr" ] && [ "$existing_pr" != "null" ]; then
-            echo "PR #$existing_pr already exists"
-          else
-            gh pr create \
-              --title "Add privacy policy page" \
-              --head "claude/add-privacy-policy-page-brBR2" \
-              --base main \
-              --body "## Summary
-          - Add bilingual (English/Spanish) privacy policy page with dark mode support
-          - Add GitHub Actions workflow to deploy the site via GitHub Pages
-
-          ## Test plan
-          - [ ] Verify the privacy policy page renders correctly
-          - [ ] Test language switching between English and Spanish
-          - [ ] Confirm dark mode styling works
-          - [ ] Verify GitHub Pages deployment succeeds after merge
-
-          https://claude.ai/code/session_011oX8YQSftxUxTwZMcnzJaA"
-            echo "Pull request created"
-          fi
+          curl -sf -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls" \
+            -d '{
+              "title": "Add privacy policy page",
+              "head": "claude/add-privacy-policy-page-brBR2",
+              "base": "main",
+              "body": "## Summary\n- Add bilingual (English/Spanish) privacy policy page with dark mode support\n- Add GitHub Actions workflow to deploy the site via GitHub Pages\n\n## Test plan\n- [ ] Verify the privacy policy page renders correctly\n- [ ] Test language switching between English and Spanish\n- [ ] Confirm dark mode styling works\n- [ ] Verify GitHub Pages deployment succeeds after merge\n\nhttps://claude.ai/code/session_011oX8YQSftxUxTwZMcnzJaA"
+            }' | jq '{number: .number, html_url: .html_url}'
